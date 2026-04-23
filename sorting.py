@@ -1,5 +1,5 @@
 import random
-
+import matplotlib.pyplot as plt
 def random_numbers(count, low=0, high=100):
     return [random.randint(low, high) for _ in range(count)]
 
@@ -24,12 +24,25 @@ def selection_sort(cisla_seznam):
     return seznamicik
 
 def bubble_sort(cisla_seznam):
+    plt.ion()
+    plt.show()
     seznamek = cisla_seznam.copy()
     cisilka = len(seznamek)
     for i in range(cisilka):
         for j in range(0, cisilka - i - 1):
             if seznamek[j] > seznamek[j+1]:
                 seznamek[j], seznamek[j+1] = seznamek[j+1], seznamek[j]
+            index_highlight1 = j
+            index_highlight2 = j + 1
+            colors = ["steelblue"] * cisilka
+            colors[index_highlight1] = "tomato"
+            colors[index_highlight2] = "tomato"
+            plt.clf()
+            plt.bar(range(cisilka), seznamek, color=colors)
+            plt.title("Bubble Sort")
+            plt.pause(0.1)
+    plt.ioff()
+    plt.show()
     return seznamek
 #
 if __name__ =="__main__":
